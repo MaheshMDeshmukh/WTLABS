@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+    <h2>Quiz App</h2>
+    <form id="quizForm">
+        <ol>
+            <li>
+                <h3>Question 1: What is the capital of France?</h3>
+                <input type="radio" name="q1" value="Paris">Paris<br>
+                <input type="radio" name="q1" value="Berlin">Berlin<br>
+                <input type="radio" name="q1" value="Madrid">Madrid<br>
+                <input type="radio" name="q1" value="Rome">Rome<br>
+            </li>
+            <li>
+                <h3>Question 2: Which planet is known as the Red Planet?</h3>
+                <input type="radio" name="q2" value="Earth">Earth<br>
+                <input type="radio" name="q2" value="Jupiter">Jupiter<br>
+                <input type="radio" name="q2" value="Mars">Mars<br>
+                <input type="radio" name="q2" value="Venus">Venus<br>
+            </li>
+            <li>
+                <h3>Question 3: Who wrote "To Kill a Mockingbird"?</h3>
+                <input type="radio" name="q3" value="Harper Lee">Harper Lee<br>
+                <input type="radio" name="q3" value="J.K. Rowling">J.K. Rowling<br>
+                <input type="radio" name="q3" value="Stephen King">Stephen King<br>
+                <input type="radio" name="q3" value="George Orwell">George Orwell<br>
+            </li>
+            <li>
+                <h3>Question 4: Which is the largest mammal?</h3>
+                <input type="radio" name="q4" value="Elephant">Elephant<br>
+                <input type="radio" name="q4" value="Whale">Whale<br>
+                <input type="radio" name="q4" value="Giraffe">Giraffe<br>
+                <input type="radio" name="q4" value="Horse">Horse<br>
+            </li>
+            <li>
+                <h3>Question 5: What is the chemical symbol for water?</h3>
+                <input type="radio" name="q5" value="H2O">H2O<br>
+                <input type="radio" name="q5" value="CO2">CO2<br>
+                <input type="radio" name="q5" value="O2">O2<br>
+                <input type="radio" name="q5" value="CH4">CH4<br>
+            </li>
+        </ol>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("quizForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var score = 0;
+
+            var answers = {
+                q1: "Paris",
+                q2: "Mars",
+                q3: "Harper Lee",
+                q4: "Whale",
+                q5: "H2O"
+            };
+
+            for (var i = 1; i <= Object.keys(answers).length; i++) {
+                var answer = answers["q" + i];
+                var userAnswer = document.querySelector('input[name="q' + i + '"]:checked');
+
+                if (userAnswer) {
+                    if (userAnswer.value === answer) {
+                        score++;
+                    }
+                }
+            }
+
+            document.getElementById("result").innerHTML = "Your score: " + score + " out of 5";
+        });
+    </script>
+</body>
+
+</html>
